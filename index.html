@@ -211,6 +211,50 @@ section.tight{padding:64px 0;}
   content:"→"; position:absolute; left:0; color:var(--accent-ink); font-family:var(--font-mono); font-size:12px;
 }
 
+/* ---------- INVEST (pre-seed) ---------- */
+.invest-panel{
+  background:var(--ink); color:var(--paper); border-radius:20px; padding:56px;
+}
+@media (max-width:700px){.invest-panel{padding:34px 24px;}}
+.invest-head{max-width:680px; margin-bottom:36px;}
+.invest-h2{
+  font-family:var(--font-display); font-size:clamp(26px,3.2vw,36px); font-weight:600; margin-top:10px;
+  color:var(--paper); text-wrap:balance;
+}
+.invest-lede{font-size:15.5px; color:color-mix(in srgb, var(--paper) 78%, transparent); margin-top:16px; line-height:1.65; text-wrap:pretty;}
+
+.invest-stats{
+  display:grid; grid-template-columns:repeat(4,1fr); gap:20px; padding:26px 0; margin-bottom:36px;
+  border-top:1px solid color-mix(in srgb, var(--paper) 18%, transparent);
+  border-bottom:1px solid color-mix(in srgb, var(--paper) 18%, transparent);
+}
+@media (max-width:700px){.invest-stats{grid-template-columns:repeat(2,1fr);}}
+.istat b{display:block; font-family:var(--font-display); font-size:30px; font-weight:600; color:var(--accent-ink);}
+.istat span{display:block; font-size:12px; color:color-mix(in srgb, var(--paper) 65%, transparent); margin-top:6px; line-height:1.4;}
+
+.invest-grid{display:grid; grid-template-columns:1.2fr 1fr; gap:44px; margin-bottom:36px;}
+@media (max-width:800px){.invest-grid{grid-template-columns:1fr;}}
+.invest-col h3{font-size:17px; color:var(--paper); margin-bottom:16px; font-family:var(--font-display);}
+.invest-reasons{list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:16px;}
+.invest-reasons li{font-size:13.5px; line-height:1.6; color:color-mix(in srgb, var(--paper) 82%, transparent); padding-left:20px; position:relative;}
+.invest-reasons li::before{content:"◆"; position:absolute; left:0; top:1px; font-size:8px; color:var(--accent-ink);}
+.invest-reasons li b{color:var(--paper); font-weight:600;}
+
+.round-table{border:1px solid color-mix(in srgb, var(--paper) 18%, transparent); border-radius:10px; overflow:hidden;}
+.round-row{
+  display:flex; justify-content:space-between; gap:12px; padding:12px 16px; font-size:13px;
+  border-bottom:1px solid color-mix(in srgb, var(--paper) 12%, transparent);
+}
+.round-row:last-child{border-bottom:none;}
+.round-row span{color:color-mix(in srgb, var(--paper) 65%, transparent); font-family:var(--font-mono); font-size:11.5px;}
+.round-row b{color:var(--paper); font-weight:500; text-align:right;}
+.invest-note{font-size:12px; color:color-mix(in srgb, var(--paper) 60%, transparent); margin-top:12px; line-height:1.5;}
+
+.invest-cta{display:flex; align-items:center; gap:18px; flex-wrap:wrap;}
+.invest-btn{background:var(--accent-ink); color:var(--ink);}
+.invest-btn:hover{box-shadow:0 6px 18px color-mix(in srgb, var(--accent-ink) 40%, transparent);}
+.invest-cta-note{font-family:var(--font-mono); font-size:12px; color:color-mix(in srgb, var(--paper) 60%, transparent);}
+
 /* ---------- CONTACT ---------- */
 .contact-box{
   border:1px solid var(--line); border-radius:16px; padding:48px; background:var(--panel);
@@ -454,11 +498,63 @@ footer{border-top:1px solid var(--line-soft); padding:48px 0 40px;}
           <p>Prior-authorization, underwriting support, and care-gap outreach tooling built on the same auditable multi-agent foundation as our clinical models.</p>
           <a href="#contact">Talk to our team →</a>
         </div>
-        <div class="audience-card" id="investors">
+        <div class="audience-card">
           <div class="icon-mark">IV</div>
           <h3>For Investors</h3>
           <p>A physician-led portfolio spanning 21 projects across six clinical domains, unified by one validation and audit standard rather than a single point product.</p>
-          <a href="#contact">Request our overview →</a>
+          <a href="#invest">See our pre-seed round →</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="wrap">
+    <section id="invest" class="reveal">
+      <div class="invest-panel">
+        <div class="invest-head">
+          <p class="eyebrow" style="color:color-mix(in srgb, var(--paper) 70%, transparent);">Pre-Seed Round · Now Open</p>
+          <h2 class="invest-h2">Invest in the physician who builds what medicine actually needs.</h2>
+          <p class="invest-lede">
+            Dr. Vasan's HC AI Lab is raising a pre-seed round to take our validated
+            models toward regulatory clearance and expand a 21-project pipeline built
+            by a practicing clinician, not retrofitted onto one by an engineering team
+            guessing at clinical need.
+          </p>
+        </div>
+
+        <div class="invest-stats">
+          <div class="istat"><b class="tabular">21</b><span>AI projects across 6 clinical domains</span></div>
+          <div class="istat"><b class="tabular">5</b><span>Already validated on held-out test data</span></div>
+          <div class="istat"><b class="tabular">2</b><span>Live production software platforms</span></div>
+          <div class="istat"><b class="tabular">1</b><span>Physician-founder, hands-on in every model</span></div>
+        </div>
+
+        <div class="invest-grid">
+          <div class="invest-col">
+            <h3>Why now</h3>
+            <ul class="invest-reasons">
+              <li><b>Portfolio, not a point product.</b> Twenty-one shots on goal across imaging, cardiology, and clinical workflow AI — de-risked by breadth, not a single bet on one model clearing FDA review.</li>
+              <li><b>Clinician-led, not clinician-advised.</b> Every architecture decision is made by a practicing physician who also builds the models — closing the gap between what gets built and what a clinician would actually trust.</li>
+              <li><b>Real validation discipline.</b> Nothing is called "validated" here until it's been evaluated against a genuinely held-out test set — the same standard investors will see applied to every future model in the pipeline.</li>
+              <li><b>Workflow, not just diagnosis.</b> Our platform layer (Vasan Health, Healthcare Workflow Orchestrator) means our imaging models have a real destination to deploy into, not just a benchmark to beat.</li>
+            </ul>
+          </div>
+          <div class="invest-col">
+            <h3>The round</h3>
+            <div class="round-table">
+              <div class="round-row"><span>Stage</span><b>Pre-Seed</b></div>
+              <div class="round-row"><span>Raise target</span><b>[ amount — provided on request ]</b></div>
+              <div class="round-row"><span>Minimum check</span><b>[ amount — provided on request ]</b></div>
+              <div class="round-row"><span>Use of funds</span><b>Regulatory validation studies, clinical data partnerships, core team</b></div>
+              <div class="round-row"><span>Structure</span><b>[ SAFE / priced — provided on request ]</b></div>
+            </div>
+            <p class="invest-note">Full financials, cap table, and data room shared under NDA — request access below.</p>
+          </div>
+        </div>
+
+        <div class="invest-cta">
+          <a class="btn btn-primary invest-btn" href="mailto:vasand99@icloud.com?subject=Pre-Seed%20Investment%20Inquiry%20—%20HC%20AI%20Lab">Request the Data Room</a>
+          <span class="invest-cta-note">Direct to Dr. Vasan · vasand99@icloud.com</span>
         </div>
       </div>
     </section>
