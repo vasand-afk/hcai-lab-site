@@ -277,11 +277,18 @@ section.tight{padding:64px 0;}
 .contact-email:hover{border-color:var(--accent-ink); color:var(--accent-ink);}
 
 /* ---------- CAREERS ---------- */
-.careers-box{
-  border:1px dashed var(--line); border-radius:16px; padding:48px; text-align:center; background:var(--panel);
+.role-card{
+  border:1px solid var(--line); border-radius:16px; padding:32px; background:var(--panel);
 }
-.careers-box h3{font-size:22px; margin-bottom:10px;}
-.careers-box p{color:var(--ink-soft); font-size:15px; max-width:460px; margin:0 auto 22px;}
+.role-head{display:flex; justify-content:space-between; align-items:flex-start; gap:20px; flex-wrap:wrap; margin-bottom:16px;}
+.role-title{font-family:var(--font-display); font-size:22px; font-weight:600; margin-bottom:10px;}
+.role-meta{display:flex; gap:8px; flex-wrap:wrap;}
+.role-tag{
+  font-family:var(--font-mono); font-size:10.5px; text-transform:uppercase; letter-spacing:.05em;
+  padding:5px 10px; border-radius:20px; background:var(--teal-soft); color:var(--teal);
+}
+.role-desc{color:var(--ink-soft); font-size:14.5px; line-height:1.65; max-width:680px;}
+.careers-note{font-family:var(--font-mono); font-size:12px; color:var(--ink-faint); margin-top:18px; text-align:center;}
 
 /* ---------- FOOTER ---------- */
 footer{border-top:1px solid var(--line-soft); padding:48px 0 40px;}
@@ -580,12 +587,30 @@ footer{border-top:1px solid var(--line-soft); padding:48px 0 40px;}
       <div class="section-head">
         <p class="eyebrow">Careers</p>
         <h2>Open Positions</h2>
+        <p>Come build with us.</p>
       </div>
-      <div class="careers-box">
-        <h3>No open roles right now</h3>
-        <p>We're a small, hands-on lab. When we're hiring, real roles will be listed here — check back soon, or reach out directly.</p>
-        <a class="btn btn-primary" href="mailto:vasand99@icloud.com">Get in touch</a>
+      <div class="role-card">
+        <div class="role-head">
+          <div>
+            <h3 class="role-title">Software &amp; Machine Learning Engineers</h3>
+            <div class="role-meta">
+              <span class="role-tag">Multiple openings</span>
+              <span class="role-tag">Remote-friendly</span>
+              <span class="role-tag">AI research background preferred</span>
+            </div>
+          </div>
+          <a class="btn btn-primary" href="mailto:vasand99@icloud.com?subject=Application%20—%20Software%2FML%20Engineer">Apply</a>
+        </div>
+        <p class="role-desc">
+          We're hiring experienced software and machine learning engineers to work
+          directly across our imaging and healthcare-workflow AI pipeline — from model
+          architecture and training through to the systems that get validated models
+          into real clinical use. A background in AI research is preferred: we care
+          more about people who've wrestled with a hard modeling problem end-to-end
+          than a specific stack.
+        </p>
       </div>
+      <p class="careers-note">No other roles open right now — check back, or reach out directly if you don't see a fit above.</p>
     </section>
   </div>
 
