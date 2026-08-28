@@ -250,6 +250,14 @@ section.tight{padding:64px 0;}
 .round-row b{color:var(--paper); font-weight:500; text-align:right;}
 .invest-note{font-size:12px; color:color-mix(in srgb, var(--paper) 60%, transparent); margin-top:12px; line-height:1.5;}
 
+.catalyst-callout{
+  margin-top:16px; padding:16px 18px; border-radius:10px; background:color-mix(in srgb, var(--accent-ink) 14%, transparent);
+  border:1px solid color-mix(in srgb, var(--accent-ink) 30%, transparent); display:flex; flex-direction:column; gap:6px;
+}
+.catalyst-arrow{font-family:var(--font-mono); font-size:16px; font-weight:600; color:var(--accent-ink);}
+.catalyst-arrow b{font-weight:400; opacity:.7;}
+.catalyst-copy{font-size:12px; color:color-mix(in srgb, var(--paper) 75%, transparent); line-height:1.5;}
+
 .invest-cta{display:flex; align-items:center; gap:18px; flex-wrap:wrap;}
 .invest-btn{background:var(--accent-ink); color:var(--ink);}
 .invest-btn:hover{box-shadow:0 6px 18px color-mix(in srgb, var(--accent-ink) 40%, transparent);}
@@ -543,12 +551,18 @@ footer{border-top:1px solid var(--line-soft); padding:48px 0 40px;}
             <h3>The round</h3>
             <div class="round-table">
               <div class="round-row"><span>Stage</span><b>Pre-Seed</b></div>
-              <div class="round-row"><span>Raise target</span><b>[ amount — provided on request ]</b></div>
+              <div class="round-row"><span>Instrument</span><b>SAFE</b></div>
+              <div class="round-row"><span>Valuation cap</span><b>$40M</b></div>
+              <div class="round-row"><span>Discount</span><b>20%</b></div>
+              <div class="round-row"><span>Raise target</span><b>$4–5M</b></div>
               <div class="round-row"><span>Minimum check</span><b>[ amount — provided on request ]</b></div>
-              <div class="round-row"><span>Use of funds</span><b>Regulatory validation studies, clinical data partnerships, core team</b></div>
-              <div class="round-row"><span>Structure</span><b>[ SAFE / priced — provided on request ]</b></div>
+              <div class="round-row"><span>Use of funds</span><b>Runway to first FDA clearance, clinical data partnerships, core team</b></div>
             </div>
-            <p class="invest-note">Full financials, cap table, and data room shared under NDA — request access below.</p>
+            <p class="invest-note">Illustrative terms, subject to final documentation. Full financials, cap table, and data room shared under NDA — request access below.</p>
+            <div class="catalyst-callout">
+              <span class="catalyst-arrow">$40M <b>→</b> $200M</span>
+              <span class="catalyst-copy">Estimated valuation re-rate on our first FDA clearance — SAFE investors convert at the $40M cap regardless of where the company is priced when that milestone lands.</span>
+            </div>
           </div>
         </div>
 
