@@ -320,7 +320,8 @@ footer{border-top:1px solid var(--line-soft); padding:48px 0 40px;}
       <a href="#who-we-are">Who We Are</a>
       <a href="#inspiration">Our Inspiration</a>
       <a href="#leadership">Our Leadership</a>
-      <a href="#projects">Our Projects</a>
+      <a href="#platforms">Platforms</a>
+      <a href="#solutions">Solutions</a>
       <a href="#facilities">Facilities</a>
       <a href="#insurers">Insurers</a>
       <a href="#invest">Investors</a>
@@ -343,7 +344,7 @@ footer{border-top:1px solid var(--line-soft); padding:48px 0 40px;}
             the way medicine is practiced: rigorously, transparently, one condition at a time.
           </p>
           <div class="hero-ctas">
-            <a class="btn btn-primary" href="#projects">Explore Our Projects</a>
+            <a class="btn btn-primary" href="#solutions">Explore Our Solutions</a>
             <a class="btn btn-ghost" href="#invest">Partner With Us</a>
           </div>
         </div>
@@ -441,11 +442,22 @@ footer{border-top:1px solid var(--line-soft); padding:48px 0 40px;}
   </div>
 
   <div class="wrap">
-    <section id="projects" class="reveal">
+    <section id="platforms" class="reveal">
       <div class="section-head">
-        <p class="eyebrow">Our Projects</p>
-        <h2>Twenty-one AI systems, one validation standard.</h2>
-        <p>Every project below is shown at its real, current stage — nothing is marked validated until it has been evaluated against a held-out test set.</p>
+        <p class="eyebrow">Platforms</p>
+        <h2>The systems everything else plugs into.</h2>
+        <p>Two general-purpose platforms carry the shared infrastructure — care coordination, evidence retrieval, and the audit trail that every individual solution reports through.</p>
+      </div>
+      <div class="proj-grid" id="platformGrid"><!-- injected --></div>
+    </section>
+  </div>
+
+  <div class="wrap">
+    <section id="solutions" class="reveal">
+      <div class="section-head">
+        <p class="eyebrow">Solutions</p>
+        <h2>Nineteen clinical solutions, one validation standard.</h2>
+        <p>Every solution below is shown at its real, current stage — nothing is marked validated until it has been evaluated against a held-out test set.</p>
       </div>
 
       <div class="legend">
@@ -456,7 +468,6 @@ footer{border-top:1px solid var(--line-soft); padding:48px 0 40px;}
 
       <div class="filter-row" id="filterRow">
         <button class="filter-chip active" data-filter="all">All Domains</button>
-        <button class="filter-chip" data-filter="platform">Platforms</button>
         <button class="filter-chip" data-filter="neuro">Neuro &amp; Vascular</button>
         <button class="filter-chip" data-filter="chest">Chest &amp; Cardiopulmonary</button>
         <button class="filter-chip" data-filter="onc">Oncology &amp; Screening</button>
@@ -618,7 +629,7 @@ footer{border-top:1px solid var(--line-soft); padding:48px 0 40px;}
       <div class="wordmark" style="font-size:16px;">Dr. Vasan's <span class="rx" aria-label="Rx" role="img"><span aria-hidden="true">R<span class="rx-x">x</span></span></span></div>
       <div class="footer-links">
         <a href="#who-we-are">About</a>
-        <a href="#projects">Projects</a>
+        <a href="#solutions">Solutions</a>
         <a href="#careers">Careers</a>
         <a href="#contact">Contact</a>
       </div>
@@ -655,27 +666,40 @@ footer{border-top:1px solid var(--line-soft); padding:48px 0 40px;}
 
   var STATUS_COLOR = {validated:"var(--status-validated)", soon:"var(--status-soon)", live:"var(--status-live)"};
 
+  // Platforms are general-purpose infrastructure and now live in their own
+  // section, so they are split out of the per-domain solution grid rather
+  // than being one filter among many.
+  var PLATFORMS = PROJECTS.filter(function(p){ return p.domain === "platform"; });
+  var SOLUTIONS = PROJECTS.filter(function(p){ return p.domain !== "platform"; });
+
+  function card(p, label){
+    var el = document.createElement("div");
+    el.className = "proj-card";
+    el.innerHTML =
+      '<div class="proj-domain">' + label + '</div>' +
+      '<div class="proj-name">' + p.name + '</div>' +
+      '<div class="proj-desc">' + p.desc + '</div>' +
+      '<div class="proj-foot">' +
+        '<span class="status-pill" style="color:' + STATUS_COLOR[p.status] + '"><span class="dot" style="background:' + STATUS_COLOR[p.status] + '"></span>' + p.statusText + '</span>' +
+        '<span class="fda-pill">FDA: ' + p.fda + '</span>' +
+      '</div>';
+    return el;
+  }
+
+  var platformGrid = document.getElementById("platformGrid");
+  PLATFORMS.forEach(function(p){ platformGrid.appendChild(card(p, p.label)); });
+
   var grid = document.getElementById("projGrid");
   function render(filter){
     grid.innerHTML = "";
     var groups = {};
-    PROJECTS.forEach(function(p){
+    SOLUTIONS.forEach(function(p){
       if(filter !== "all" && p.domain !== filter) return;
       (groups[p.label] = groups[p.label] || []).push(p);
     });
     Object.keys(groups).forEach(function(label){
       groups[label].forEach(function(p){
-        var card = document.createElement("div");
-        card.className = "proj-card";
-        card.innerHTML =
-          '<div class="proj-domain">' + label + '</div>' +
-          '<div class="proj-name">' + p.name + '</div>' +
-          '<div class="proj-desc">' + p.desc + '</div>' +
-          '<div class="proj-foot">' +
-            '<span class="status-pill" style="color:' + STATUS_COLOR[p.status] + '"><span class="dot" style="background:' + STATUS_COLOR[p.status] + '"></span>' + p.statusText + '</span>' +
-            '<span class="fda-pill">FDA: ' + p.fda + '</span>' +
-          '</div>';
-        grid.appendChild(card);
+        grid.appendChild(card(p, label));
       });
     });
   }
