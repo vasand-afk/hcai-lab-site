@@ -135,7 +135,11 @@ nav.links a:hover{color:var(--ink); background:var(--line-soft);}
 .has-drop{position:relative; display:inline-flex; align-items:center;}
 .has-drop > a::after{content:"\25BE"; font-size:9px; margin-left:5px; vertical-align:middle; opacity:.65;}
 .drop-menu{
-  position:absolute; top:calc(100% + 4px); left:0; min-width:212px; z-index:60;
+  /* top:100%, NOT calc(100% + 4px). Any offset here is a dead zone: the
+     pointer leaves .has-drop before it reaches the menu, :hover goes false
+     and the menu closes on the way down. The menu now abuts the trigger and
+     separation comes from its border and shadow instead. */
+  position:absolute; top:100%; left:0; min-width:212px; z-index:60;
   background:var(--paper); border:1px solid var(--line); border-radius:8px;
   padding:6px; box-shadow:0 12px 28px -12px rgba(0,0,0,.28);
   display:none; flex-direction:column; gap:1px;
@@ -350,6 +354,13 @@ section.tight{padding:64px 0;}
   border-bottom:1px solid color-mix(in srgb, var(--paper) 12%, transparent);
 }
 .round-row:last-child{border-bottom:none;}
+.round-row a{
+  color:var(--paper); text-decoration:none;
+  border-bottom:1px solid color-mix(in srgb, var(--paper) 45%, transparent);
+  transition:color .15s ease, border-color .15s ease;
+}
+.round-row a:hover{color:var(--accent-soft); border-bottom-color:var(--accent-soft);}
+.round-row a:focus-visible{outline:2px solid var(--paper); outline-offset:2px; border-radius:2px;}
 .round-row span{color:color-mix(in srgb, var(--paper) 65%, transparent); font-family:var(--font-mono); font-size:11.5px;}
 .round-row b{color:var(--paper); font-weight:500; text-align:right;}
 .invest-note{font-size:12px; color:color-mix(in srgb, var(--paper) 60%, transparent); margin-top:12px; line-height:1.5;}
@@ -633,7 +644,7 @@ footer{border-top:1px solid var(--line-soft); padding:48px 0 40px;}
               <div class="round-row"><span>Discount</span><b>20%</b></div>
               <div class="round-row"><span>Raise target</span><b>$4–5M</b></div>
               <div class="round-row"><span>Minimum check</span><b>$50K clinical/strategic · $100K+ preferred</b></div>
-              <div class="round-row"><span>Round closes</span><b>Contact us for details</b></div>
+              <div class="round-row"><span>Round closes</span><b><a href="#contact">Contact us</a> for details</b></div>
               <div class="round-row"><span>Use of funds</span><b>Runway to first FDA clearance, clinical data partnerships, core team</b></div>
             </div>
             <p class="invest-note">Illustrative terms, subject to final documentation. Full financials, cap table, and data room shared under NDA — request access below.</p>
