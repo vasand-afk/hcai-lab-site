@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Dr. Vasan's Rx for HealthCare Facilities</title>
+<title>MDAIRX — Dr. Vasan's Rx for HealthCare Facilities</title>
 <meta name="description" content="Dr. Vasan's Rx for HealthCare facilities — physician-led diagnostic and workflow AI enhancing care delivery and boosting your bottom line.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🩺</text></svg>">
 <style>
@@ -64,6 +64,10 @@ header.site-nav{
   display:flex; align-items:baseline; gap:8px;
 }
 .wordmark .dr{color:var(--accent-ink); font-style:italic; font-size:15px;}
+.wordmark .brand{letter-spacing:.01em;}
+/* In the wordmark the Rx sits inside the name, so it inherits the
+   wordmark colour rather than the accent used in the hero. */
+.wordmark .rx{color:inherit;}
 nav.links{display:flex; gap:2px; flex-wrap:wrap; justify-content:flex-end;}
 nav.links a{
   font-size:13px; text-decoration:none; color:var(--ink-soft); padding:8px 11px; border-radius:5px;
@@ -314,7 +318,7 @@ footer{border-top:1px solid var(--line-soft); padding:48px 0 40px;}
 
 <header class="site-nav">
   <div class="wrap nav-row">
-    <div class="wordmark">Dr. Vasan's <span class="rx" aria-label="Rx" role="img"><span aria-hidden="true">R<span class="rx-x">x</span></span></span> <span class="dr">— for HealthCare facilities</span></div>
+    <div class="wordmark"><span class="brand">MDAI</span><span class="rx" aria-label="Rx" role="img"><span aria-hidden="true">R<span class="rx-x">x</span></span></span> <span class="dr">— Dr. Vasan's Rx for HealthCare facilities</span></div>
     <button class="nav-toggle" id="navToggle">MENU</button>
     <nav class="links" id="navLinks">
       <a href="#who-we-are">Who We Are</a>
@@ -626,7 +630,7 @@ footer{border-top:1px solid var(--line-soft); padding:48px 0 40px;}
 <footer>
   <div class="wrap">
     <div class="footer-grid">
-      <div class="wordmark" style="font-size:16px;">Dr. Vasan's <span class="rx" aria-label="Rx" role="img"><span aria-hidden="true">R<span class="rx-x">x</span></span></span></div>
+      <div class="wordmark" style="font-size:16px;"><span class="brand">MDAI</span><span class="rx" aria-label="Rx" role="img"><span aria-hidden="true">R<span class="rx-x">x</span></span></span></div>
       <div class="footer-links">
         <a href="#who-we-are">About</a>
         <a href="#solutions">Solutions</a>
