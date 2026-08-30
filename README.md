@@ -1,6 +1,6 @@
 # MDAIRX
 
-Marketing/portfolio site for **MDAIRX** — Dr. Vasan's Rx for HealthCare
+Marketing/portfolio site for **MDAIRX** — Dr. Vasan's AI Rx for HealthCare
 facilities. Physician-led diagnostic and workflow AI across clinical
 imaging and care operations.
 
