@@ -74,6 +74,28 @@ nav.links a{
   transition:color .15s ease, background .15s ease; white-space:nowrap;
 }
 nav.links a:hover{color:var(--ink); background:var(--line-soft);}
+/* ---------- SOLUTIONS DROPDOWN ---------- */
+/* Hover opens it on pointer devices; click/Enter also toggles, so it works
+   for keyboard and touch where :hover never fires. */
+.has-drop{position:relative;}
+.has-drop > a::after{content:"\25BE"; font-size:9px; margin-left:5px; vertical-align:middle; opacity:.65;}
+.drop-menu{
+  position:absolute; top:calc(100% + 4px); left:0; min-width:212px; z-index:60;
+  background:var(--paper); border:1px solid var(--line); border-radius:8px;
+  padding:6px; box-shadow:0 12px 28px -12px rgba(0,0,0,.28);
+  display:none; flex-direction:column; gap:1px;
+}
+.has-drop:hover .drop-menu, .has-drop.open .drop-menu{display:flex;}
+nav.links .drop-menu a{padding:8px 10px; font-size:13px; border-radius:5px; color:var(--ink-soft);}
+nav.links .drop-menu a:hover{background:var(--line-soft); color:var(--ink);}
+.drop-menu .drop-count{font-family:var(--font-mono); font-size:10px; color:var(--ink-faint); float:right; margin-left:12px;}
+@media (max-width:980px){
+  /* Stacked mobile nav: let it sit in flow instead of floating over content. */
+  .has-drop{width:100%;}
+  .drop-menu{position:static; display:flex; border:none; box-shadow:none; padding:2px 0 6px 12px; min-width:0; background:none;}
+  .has-drop > a::after{content:"";}
+}
+
 .nav-toggle{display:none;}
 @media (max-width:980px){
   nav.links{display:none;}
@@ -325,9 +347,19 @@ footer{border-top:1px solid var(--line-soft); padding:48px 0 40px;}
       <a href="#inspiration">Our Inspiration</a>
       <a href="#leadership">Our Leadership</a>
       <a href="#platforms">Platforms</a>
-      <a href="#solutions">Solutions</a>
-      <a href="#facilities">Facilities</a>
-      <a href="#insurers">Insurers</a>
+      <span class="has-drop" id="solutionsDrop">
+        <a href="#solutions">Solutions</a>
+        <span class="drop-menu">
+          <a href="#solutions" data-filter="genrad">Gen Radiology<span class="drop-count">4</span></a>
+          <a href="#solutions" data-filter="er">ER<span class="drop-count">6</span></a>
+          <a href="#solutions" data-filter="cardio">Cardiology<span class="drop-count">5</span></a>
+          <a href="#solutions" data-filter="ortho">Orthopedics<span class="drop-count">3</span></a>
+          <a href="#solutions" data-filter="obgyn">Obstetrics &amp; Gynecology<span class="drop-count">2</span></a>
+          <a href="#solutions" data-filter="dental">Dentistry<span class="drop-count">1</span></a>
+          <a href="#solutions" data-filter="eye">Ophthalmology<span class="drop-count">4</span></a>
+          <a href="#solutions" data-filter="misc">Miscellaneous<span class="drop-count">6</span></a>
+        </span>
+      </span>
       <a href="#invest">Investors</a>
       <a href="#careers">Open Positions</a>
       <a href="#contact">Contact Us</a>
@@ -356,9 +388,9 @@ footer{border-top:1px solid var(--line-soft); padding:48px 0 40px;}
           <div class="cap"><span>Live Signal — Demonstration</span><span>Lead II</span></div>
           <canvas id="ecgCanvas"></canvas>
           <div class="stat-row">
-            <div class="stat"><b class="tabular">21</b><span>AI PROJECTS</span></div>
-            <div class="stat"><b class="tabular">5</b><span>VALIDATED</span></div>
-            <div class="stat"><b class="tabular">6</b><span>DOMAINS</span></div>
+            <div class="stat"><b class="tabular">33</b><span>AI PROJECTS</span></div>
+            <div class="stat"><b class="tabular">19</b><span>VALIDATED</span></div>
+            <div class="stat"><b class="tabular">8</b><span>SPECIALTIES</span></div>
           </div>
         </div>
       </div>
@@ -426,10 +458,11 @@ footer{border-top:1px solid var(--line-soft); padding:48px 0 40px;}
           <p class="leader-bio">
             Dr. Vasan is not only a visionary in the field of Internal Medicine, Geriatrics,
             Cardiology, Nutrition, Longevity and Neuroscience — his penchant for technology,
-            AI in particular, led him to self-learn Data Science, Machine Learning, and Deep
-            Learning, and to develop innovative algorithms in healthcare. He continues to
-            engage in hands-on research in Convolutional Neural Networks (CNN) and healthcare
-            workflow orchestration.
+            AI in particular, led him to self-learn Data Science, Machine Learning,
+            transformers and neural network architectures. He continues to engage in
+            hands-on research in cutting edge technologies in healthcare to improve patient
+            care and workflow orchestration. He is also a licensed Private Pilot with a
+            passion for aerobatics.
           </p>
           <div class="tag-row">
             <span class="tag">Internal Medicine</span>
@@ -471,16 +504,15 @@ footer{border-top:1px solid var(--line-soft); padding:48px 0 40px;}
       </div>
 
       <div class="filter-row" id="filterRow">
-        <button class="filter-chip active" data-filter="all">All Domains</button>
-        <button class="filter-chip" data-filter="neuro">Neuro &amp; Vascular</button>
-        <button class="filter-chip" data-filter="chest">Chest &amp; Cardiopulmonary</button>
-        <button class="filter-chip" data-filter="onc">Oncology &amp; Screening</button>
+        <button class="filter-chip active" data-filter="all">All Solutions</button>
+        <button class="filter-chip" data-filter="genrad">Gen Radiology</button>
+        <button class="filter-chip" data-filter="er">ER</button>
+        <button class="filter-chip" data-filter="cardio">Cardiology</button>
+        <button class="filter-chip" data-filter="ortho">Orthopedics</button>
+        <button class="filter-chip" data-filter="obgyn">Obstetrics &amp; Gynecology</button>
+        <button class="filter-chip" data-filter="dental">Dentistry</button>
         <button class="filter-chip" data-filter="eye">Ophthalmology</button>
-        <button class="filter-chip" data-filter="msk">Musculoskeletal &amp; Trauma</button>
-        <button class="filter-chip" data-filter="cardio">Cardiovascular</button>
-        <button class="filter-chip" data-filter="critcare">Critical Care</button>
-        <button class="filter-chip" data-filter="obgyn">Obstetrics &amp; Women's Health</button>
-        <button class="filter-chip" data-filter="dental">Dental</button>
+        <button class="filter-chip" data-filter="misc">Miscellaneous</button>
       </div>
 
       <div class="proj-grid" id="projGrid"><!-- injected --></div>
@@ -489,36 +521,6 @@ footer{border-top:1px solid var(--line-soft); padding:48px 0 40px;}
 
 
   <div class="wrap">
-    <section id="facilities" class="tight reveal">
-      <div class="section-head">
-        <p class="eyebrow">Who We Work With</p>
-        <h2>Built to fit into how care already runs.</h2>
-      </div>
-      <div class="audience-grid">
-        <div class="audience-card">
-          <div class="icon-mark">FA</div>
-          <h3>For Healthcare Facilities</h3>
-          <p>Deployable alongside existing radiology, EHR, and care-management workflows — cloud or on-premise, with a full decision audit trail for every flagged case.</p>
-          <ul class="audience-list">
-            <li>We offer package pricing for our full suite.</li>
-            <li>We are looking for validation collaborators across multiple disciplines, including Radiology, Cardiology, Orthopedics, Neurology, and Pulmonary/Critical Care.</li>
-          </ul>
-          <a href="#contact">Discuss a pilot →</a>
-        </div>
-        <div class="audience-card" id="insurers">
-          <div class="icon-mark">IN</div>
-          <h3>For Health Insurance Companies</h3>
-          <p>Prior-authorization, underwriting support, and care-gap outreach tooling built on the same auditable multi-agent foundation as our clinical models.</p>
-          <a href="#contact">Talk to our team →</a>
-        </div>
-        <div class="audience-card">
-          <div class="icon-mark">IV</div>
-          <h3>For Investors</h3>
-          <p>A physician-led portfolio spanning 33 projects across nine clinical domains, unified by one validation and audit standard rather than a single point product.</p>
-          <a href="#invest">See our pre-seed round →</a>
-        </div>
-      </div>
-    </section>
   </div>
 
   <div class="wrap">
@@ -536,8 +538,8 @@ footer{border-top:1px solid var(--line-soft); padding:48px 0 40px;}
         </div>
 
         <div class="invest-stats">
-          <div class="istat"><b class="tabular">21</b><span>AI projects across 6 clinical domains</span></div>
-          <div class="istat"><b class="tabular">5</b><span>Already validated on held-out test data</span></div>
+          <div class="istat"><b class="tabular">33</b><span>AI projects across 8 clinical specialties</span></div>
+          <div class="istat"><b class="tabular">19</b><span>Already validated on held-out test data</span></div>
           <div class="istat"><b class="tabular">2</b><span>Live production software platforms</span></div>
           <div class="istat"><b class="tabular">1</b><span>Physician-founder, hands-on in every model</span></div>
         </div>
@@ -573,8 +575,8 @@ footer{border-top:1px solid var(--line-soft); padding:48px 0 40px;}
         </div>
 
         <div class="invest-cta">
-          <a class="btn btn-primary invest-btn" href="mailto:vasand99@icloud.com?subject=Pre-Seed%20Investment%20Inquiry%20—%20HC%20AI%20Lab">Request the Data Room</a>
-          <span class="invest-cta-note">Direct to Dr. Vasan · vasand99@icloud.com</span>
+          <a class="btn btn-primary invest-btn" href="mailto:getai@mdairx.com?subject=Pre-Seed%20Investment%20Inquiry%20—%20HC%20AI%20Lab">Request the Data Room</a>
+          <span class="invest-cta-note">Direct to Dr. Vasan · getai@mdairx.com</span>
         </div>
       </div>
     </section>
@@ -597,7 +599,7 @@ footer{border-top:1px solid var(--line-soft); padding:48px 0 40px;}
               <span class="role-tag">AI research background preferred</span>
             </div>
           </div>
-          <a class="btn btn-primary" href="mailto:vasand99@icloud.com?subject=Application%20—%20Software%2FML%20Engineer">Apply</a>
+          <a class="btn btn-primary" href="mailto:getai@mdairx.com?subject=Application%20—%20Software%2FML%20Engineer">Apply</a>
         </div>
         <p class="role-desc">
           We're hiring experienced software and machine learning engineers to work
@@ -622,8 +624,12 @@ footer{border-top:1px solid var(--line-soft); padding:48px 0 40px;}
         <div class="ct-copy">
           <p class="eyebrow" style="color:var(--ink-soft); font-weight:500;">Facilities · Insurers · Investors · Collaborators</p>
           <p>Whether you're exploring a pilot, a validation partnership, or an investment conversation — reach out directly and we'll respond personally.</p>
+          <ul class="audience-list">
+            <li>Package pricing is available for the full suite.</li>
+            <li>We are looking for validation collaborators across Radiology, Cardiology, Orthopedics, Neurology, and Pulmonary/Critical Care.</li>
+          </ul>
         </div>
-        <a class="contact-email" href="mailto:vasand99@icloud.com">vasand99@icloud.com</a>
+        <a class="contact-email" href="mailto:getai@mdairx.com">getai@mdairx.com</a>
       </div>
     </section>
   </div>
@@ -650,45 +656,45 @@ footer{border-top:1px solid var(--line-soft); padding:48px 0 40px;}
     {domain:"platform", label:"Platforms & Workflow AI", name:"Vasan Health", desc:"Multi-suite ambulatory chronic-disease AI platform — condition-agent care management, AI scribe, evidence RAG, and preventive care under one audit trail.", status:"live", statusText:"Live — active development", fda:"Not applicable"},
     {domain:"platform", label:"Platforms & Workflow AI", name:"Healthcare Workflow Orchestrator", desc:"Multi-agent, guideline-grounded care-gap detection and outreach coordination — turns clinical guidelines into auditable patient-level actions.", status:"live", statusText:"Live — active development", fda:"Not applicable"},
 
-    {domain:"neuro", label:"Neuro & Vascular Imaging", name:"Intracranial Hemorrhage (ICH)", desc:"CT hemorrhage detection across five subtypes — a 2.5D per-slice encoder with a sequence model reading the ordered slice stack, so each slice is judged in the context of its neighbours. Re-validated on CQ500, an independent Indian cohort it never trained on: discrimination held, while the thresholds needed re-establishing for the new population — a finding we report rather than tune away.", status:"validated", statusText:"Validated — AUC 0.98 held-out; AUC 0.94 external (CQ500, 473 studies)", fda:"Pending"},
-    {domain:"neuro", label:"Neuro & Vascular Imaging", name:"Stroke / Large Vessel Occlusion", desc:"CT-based stroke lesion segmentation, nnU-Net after a frozen-encoder approach was tested and rejected.", status:"soon", statusText:"In development — validation Dice 0.78", fda:"Pending"},
-    {domain:"neuro", label:"Neuro & Vascular Imaging", name:"Cervical Spine Fracture", desc:"CT-based C1-C7 fracture detection and triage.", status:"soon", statusText:"In development — test AUC 0.61", fda:"Pending"},
+    {domain:"er", label:"ER", name:"Intracranial Hemorrhage (ICH)", desc:"CT hemorrhage detection across five subtypes — a 2.5D per-slice encoder with a sequence model reading the ordered slice stack, so each slice is judged in the context of its neighbours. Re-validated on CQ500, an independent Indian cohort it never trained on: discrimination held, while the thresholds needed re-establishing for the new population — a finding we report rather than tune away.", status:"validated", statusText:"Validated — AUC 0.98 held-out; AUC 0.94 external (CQ500, 473 studies)", fda:"Pending"},
+    {domain:"er", label:"ER", name:"Stroke / Large Vessel Occlusion", desc:"CT-based stroke lesion segmentation, nnU-Net after a frozen-encoder approach was tested and rejected.", status:"soon", statusText:"In development — validation Dice 0.78", fda:"Pending"},
+    {domain:"er", label:"ER", name:"Cervical Spine Fracture", desc:"CT-based C1-C7 fracture detection and triage.", status:"soon", statusText:"In development — test AUC 0.61", fda:"Pending"},
 
-    {domain:"chest", label:"Chest & Cardiopulmonary Imaging", name:"Pneumothorax Detection", desc:"Chest X-ray. A U-Net localises the affected region rather than scoring the whole image, which is what the benchmark evidence favours for small and subtle collections.", status:"validated", statusText:"Validated — AUC 0.95, sens. 80%, spec. 93%", fda:"Pending"},
-    {domain:"chest", label:"Chest & Cardiopulmonary Imaging", name:"Pneumonia Detection", desc:"Chest X-ray. A U-Net trained on localised opacities, reported as its own device rather than one label among many.", status:"validated", statusText:"Validated — AUC 0.90, sens. 83%", fda:"Pending"},
-    {domain:"chest", label:"Chest & Cardiopulmonary Imaging", name:"Pulmonary Embolism (PE)", desc:"CT pulmonary angiography, 2.5D CNN with a sequence model across slices.", status:"validated", statusText:"Validated — test AUC 0.89, sens. 87%", fda:"Pending"},
-    {domain:"chest", label:"Chest & Cardiopulmonary Imaging", name:"Lung Nodule Detection", desc:"CT-based pulmonary nodule detection, 3D segmentation into malignancy assessment.", status:"soon", statusText:"In training", fda:"Pending"},
+    {domain:"er", label:"ER", name:"Pneumothorax Detection", desc:"Chest X-ray. A U-Net localises the affected region rather than scoring the whole image, which is what the benchmark evidence favours for small and subtle collections.", status:"validated", statusText:"Validated — AUC 0.95, sens. 80%, spec. 93%", fda:"Pending"},
+    {domain:"genrad", label:"Gen Radiology", name:"Pneumonia Detection", desc:"Chest X-ray. A U-Net trained on localised opacities, reported as its own device rather than one label among many.", status:"validated", statusText:"Validated — AUC 0.90, sens. 83%", fda:"Pending"},
+    {domain:"er", label:"ER", name:"Pulmonary Embolism (PE)", desc:"CT pulmonary angiography, 2.5D CNN with a sequence model across slices.", status:"validated", statusText:"Validated — test AUC 0.89, sens. 87%", fda:"Pending"},
+    {domain:"genrad", label:"Gen Radiology", name:"Lung Nodule Detection", desc:"CT-based pulmonary nodule detection, 3D segmentation into malignancy assessment.", status:"soon", statusText:"In training", fda:"Pending"},
 
-    {domain:"cardio", label:"Cardiovascular", name:"Echocardiography Ejection Fraction", desc:"Video-based left-ventricular ejection fraction estimation from echocardiography.", status:"validated", statusText:"Validated — test MAE 4.5 EF points", fda:"Pending"},
-    {domain:"cardio", label:"Cardiovascular", name:"12-Lead ECG Classification", desc:"Multi-label rhythm and conduction abnormality classification from 12-lead ECG.", status:"validated", statusText:"Validated — macro-AUC 0.90", fda:"Pending"},
-    {domain:"cardio", label:"Cardiovascular", name:"Coronary Artery Calcium (CAC)", desc:"Opportunistic calcium scoring on chest CT — segment calcium, then compute Agatston by the published rule rather than predicting it.", status:"soon", statusText:"In training", fda:"Pending"},
-    {domain:"cardio", label:"Cardiovascular", name:"Cardiac MRI Function & Phenotype", desc:"Segments RV, myocardium and LV, then derives ejection fraction, volumes and mass — and classifies cardiomyopathy from those measurements, not from pixels.", status:"soon", statusText:"In training", fda:"Pending"},
-    {domain:"cardio", label:"Cardiovascular", name:"Coronary Plaque Analysis", desc:"CCTA-based coronary artery segmentation with HU-threshold plaque composition.", status:"soon", statusText:"In development", fda:"Pending"},
+    {domain:"cardio", label:"Cardiology", name:"Echocardiography Ejection Fraction", desc:"Video-based left-ventricular ejection fraction estimation from echocardiography.", status:"validated", statusText:"Validated — test MAE 4.5 EF points", fda:"Pending"},
+    {domain:"cardio", label:"Cardiology", name:"12-Lead ECG Classification", desc:"Multi-label rhythm and conduction abnormality classification from 12-lead ECG.", status:"validated", statusText:"Validated — macro-AUC 0.90", fda:"Pending"},
+    {domain:"cardio", label:"Cardiology", name:"Coronary Artery Calcium (CAC)", desc:"Opportunistic calcium scoring on chest CT — segment calcium, then compute Agatston by the published rule rather than predicting it.", status:"soon", statusText:"In training", fda:"Pending"},
+    {domain:"cardio", label:"Cardiology", name:"Cardiac MRI Function & Phenotype", desc:"Segments RV, myocardium and LV, then derives ejection fraction, volumes and mass — and classifies cardiomyopathy from those measurements, not from pixels.", status:"soon", statusText:"In training", fda:"Pending"},
+    {domain:"cardio", label:"Cardiology", name:"Coronary Plaque Analysis", desc:"CCTA-based coronary artery segmentation with HU-threshold plaque composition.", status:"soon", statusText:"In development", fda:"Pending"},
 
-    {domain:"critcare", label:"Critical Care & Perioperative", name:"Sepsis Early Warning", desc:"Hourly sepsis-onset prediction from vitals and labs, six hours ahead. Gradient-boosted trees, chosen over deep learning on published benchmark evidence.", status:"validated", statusText:"Validated — test AUC 0.83, consistent across two hospitals", fda:"Pending"},
-    {domain:"critcare", label:"Critical Care & Perioperative", name:"Intraoperative Hypotension", desc:"Short-horizon hypotension prediction from intraoperative arterial waveform data.", status:"validated", statusText:"Validated — test AUC 0.75", fda:"Pending"},
+    {domain:"misc", label:"Miscellaneous", name:"Sepsis Early Warning", desc:"Hourly sepsis-onset prediction from vitals and labs, six hours ahead. Gradient-boosted trees, chosen over deep learning on published benchmark evidence.", status:"validated", statusText:"Validated — test AUC 0.83, consistent across two hospitals", fda:"Pending"},
+    {domain:"misc", label:"Miscellaneous", name:"Intraoperative Hypotension", desc:"Short-horizon hypotension prediction from intraoperative arterial waveform data.", status:"validated", statusText:"Validated — test AUC 0.75", fda:"Pending"},
 
-    {domain:"onc", label:"Oncology & Screening", name:"Melanoma / Dermoscopy", desc:"Dermoscopic melanoma detection, built to the FDA sensitivity floor that governs this device class.", status:"validated", statusText:"Validated — test AUC 0.92, sens. 92%", fda:"Pending"},
-    {domain:"onc", label:"Oncology & Screening", name:"Mammography", desc:"Screening mammography lesion classification.", status:"soon", statusText:"In development — min AUC 0.77", fda:"Pending"},
-    {domain:"onc", label:"Oncology & Screening", name:"Prostate Pathology (ISUP)", desc:"Whole-slide prostate biopsy grading to ISUP grade group, scored as the ordinal task it is.", status:"validated", statusText:"Validated — weighted kappa 0.79", fda:"Pending"},
-    {domain:"onc", label:"Oncology & Screening", name:"Colonoscopy Polyp Detection", desc:"Real-time polyp detection during colonoscopy — 128 frames/sec measured, since live inference is a device requirement here, not a nicety.", status:"validated", statusText:"Validated — mAP50 0.90, real-time", fda:"Pending"},
-    {domain:"onc", label:"Oncology & Screening", name:"AML Blood Smear Subtyping", desc:"Predicts AML genetic subtype from single-cell morphology — a determination normally made by cytogenetics, not by looking at cells.", status:"soon", statusText:"In training", fda:"Not yet classified"},
+    {domain:"misc", label:"Miscellaneous", name:"Melanoma / Dermoscopy", desc:"Dermoscopic melanoma detection, built to the FDA sensitivity floor that governs this device class.", status:"validated", statusText:"Validated — test AUC 0.92, sens. 92%", fda:"Pending"},
+    {domain:"genrad", label:"Gen Radiology", name:"Mammography", desc:"Screening mammography lesion classification.", status:"soon", statusText:"In development — min AUC 0.77", fda:"Pending"},
+    {domain:"misc", label:"Miscellaneous", name:"Prostate Pathology (ISUP)", desc:"Whole-slide prostate biopsy grading to ISUP grade group, scored as the ordinal task it is.", status:"validated", statusText:"Validated — weighted kappa 0.79", fda:"Pending"},
+    {domain:"misc", label:"Miscellaneous", name:"Colonoscopy Polyp Detection", desc:"Real-time polyp detection during colonoscopy — 128 frames/sec measured, since live inference is a device requirement here, not a nicety.", status:"validated", statusText:"Validated — mAP50 0.90, real-time", fda:"Pending"},
+    {domain:"misc", label:"Miscellaneous", name:"AML Blood Smear Subtyping", desc:"Predicts AML genetic subtype from single-cell morphology — a determination normally made by cytogenetics, not by looking at cells.", status:"soon", statusText:"In training", fda:"Not yet classified"},
 
     {domain:"eye", label:"Ophthalmology", name:"Age-Related Macular Degeneration", desc:"OCT-based AMD detection and staging.", status:"validated", statusText:"Validated — test AUC 0.99", fda:"Pending"},
     {domain:"eye", label:"Ophthalmology", name:"Fundus Multi-Disease", desc:"Multi-label retinal disease classification from colour fundus photographs.", status:"validated", statusText:"Validated — macro-AUC 0.87 across 36 conditions", fda:"Pending"},
     {domain:"eye", label:"Ophthalmology", name:"Glaucoma Screening", desc:"Fundus-based glaucoma screening.", status:"validated", statusText:"Validated — test AUC 0.86", fda:"Pending"},
     {domain:"eye", label:"Ophthalmology", name:"Diabetic Retinopathy", desc:"Fundus-based diabetic retinopathy grading.", status:"soon", statusText:"In development", fda:"Pending"},
 
-    {domain:"msk", label:"Musculoskeletal & Trauma", name:"Abdominal Trauma Detection", desc:"CT-based multi-organ injury detection — bowel, liver, spleen, kidney and active extravasation scored independently.", status:"validated", statusText:"Validated — mean AUC 0.83 across six findings", fda:"Pending"},
-    {domain:"msk", label:"Musculoskeletal & Trauma", name:"Knee Osteoarthritis Grading", desc:"Kellgren-Lawrence severity grading from knee radiographs, scored as the ordinal task it is.", status:"validated", statusText:"Validated — weighted kappa 0.84", fda:"Pending"},
-    {domain:"msk", label:"Musculoskeletal & Trauma", name:"Paediatric Wrist Fracture", desc:"Fracture detection on children's wrist radiographs, evaluated on the cast-free subgroup where the clinical decision actually happens.", status:"soon", statusText:"In training", fda:"Pending"},
-    {domain:"msk", label:"Musculoskeletal & Trauma", name:"Pelvic / Hip Fracture Segmentation", desc:"CT-based pelvic bone and fragment segmentation.", status:"soon", statusText:"In training", fda:"Pending"},
+    {domain:"er", label:"ER", name:"Abdominal Trauma Detection", desc:"CT-based multi-organ injury detection — bowel, liver, spleen, kidney and active extravasation scored independently.", status:"validated", statusText:"Validated — mean AUC 0.83 across six findings", fda:"Pending"},
+    {domain:"ortho", label:"Orthopedics", name:"Knee Osteoarthritis Grading", desc:"Kellgren-Lawrence severity grading from knee radiographs, scored as the ordinal task it is.", status:"validated", statusText:"Validated — weighted kappa 0.84", fda:"Pending"},
+    {domain:"ortho", label:"Orthopedics", name:"Paediatric Wrist Fracture", desc:"Fracture detection on children's wrist radiographs, evaluated on the cast-free subgroup where the clinical decision actually happens.", status:"soon", statusText:"In training", fda:"Pending"},
+    {domain:"ortho", label:"Orthopedics", name:"Pelvic / Hip Fracture Segmentation", desc:"CT-based pelvic bone and fragment segmentation.", status:"soon", statusText:"In training", fda:"Pending"},
 
-    {domain:"obgyn", label:"Obstetrics & Women's Health", name:"Fetal Standard Plane Recognition", desc:"Identifies the anatomical standard plane during obstetric ultrasound — and measures how performance transfers across scanner manufacturers.", status:"validated", statusText:"Validated — macro-F1 0.94", fda:"Pending"},
-    {domain:"obgyn", label:"Obstetrics & Women's Health", name:"Fetal Head Circumference Biometry", desc:"Segments the fetal skull and measures head circumference in millimetres using each image's own pixel scale.", status:"soon", statusText:"In training", fda:"Pending"},
-    {domain:"obgyn", label:"Obstetrics & Women's Health", name:"Breast & Thyroid Ultrasound", desc:"Shared-encoder B-mode ultrasound model: breast malignancy and thyroid TI-RADS risk, with external-site validation.", status:"validated", statusText:"Validated — breast AUC 0.98", fda:"Pending"},
+    {domain:"obgyn", label:"Obstetrics &amp; Gynecology", name:"Fetal Standard Plane Recognition", desc:"Identifies the anatomical standard plane during obstetric ultrasound — and measures how performance transfers across scanner manufacturers.", status:"validated", statusText:"Validated — macro-F1 0.94", fda:"Pending"},
+    {domain:"obgyn", label:"Obstetrics &amp; Gynecology", name:"Fetal Head Circumference Biometry", desc:"Segments the fetal skull and measures head circumference in millimetres using each image's own pixel scale.", status:"soon", statusText:"In training", fda:"Pending"},
+    {domain:"genrad", label:"Gen Radiology", name:"Breast & Thyroid Ultrasound", desc:"Shared-encoder B-mode ultrasound model: breast malignancy and thyroid TI-RADS risk, with external-site validation.", status:"validated", statusText:"Validated — breast AUC 0.98", fda:"Pending"},
 
-    {domain:"dental", label:"Dental", name:"Dental Panoramic X-ray", desc:"Detects caries, deep caries, periapical lesions and impacted teeth on panoramic radiographs, with tooth numbering assigned geometrically.", status:"validated", statusText:"Validated — mAP50 0.55", fda:"Pending"}
+    {domain:"dental", label:"Dentistry", name:"Dental Panoramic X-ray", desc:"Detects caries, deep caries, periapical lesions and impacted teeth on panoramic radiographs, with tooth numbering assigned geometrically.", status:"validated", statusText:"Validated — mAP50 0.55", fda:"Pending"}
   ];
 
   var STATUS_COLOR = {validated:"var(--status-validated)", soon:"var(--status-soon)", live:"var(--status-live)"};
@@ -739,6 +745,29 @@ footer{border-top:1px solid var(--line-soft); padding:48px 0 40px;}
     btn.classList.add("active");
     render(btn.dataset.filter);
   });
+
+  // Dropdown -> filter the solutions grid and scroll to it. The chips remain
+  // the source of truth for which filter is active, so the menu drives them
+  // rather than keeping a second copy of the state.
+  (function(){
+    var drop = document.getElementById("solutionsDrop");
+    if(!drop) return;
+    drop.querySelector("a").addEventListener("click", function(e){
+      // On touch/keyboard there is no hover, so the parent link toggles.
+      if(window.matchMedia("(max-width:980px)").matches){
+        e.preventDefault(); drop.classList.toggle("open");
+      }
+    });
+    drop.querySelectorAll(".drop-menu a").forEach(function(a){
+      a.addEventListener("click", function(){
+        var f = a.getAttribute("data-filter");
+        var chip = document.querySelector('.filter-chip[data-filter="' + f + '"]');
+        if(chip) chip.click();
+        drop.classList.remove("open");
+        document.getElementById("navLinks").classList.remove("open");
+      });
+    });
+  })();
 
   document.getElementById("navToggle").addEventListener("click", function(){
     document.getElementById("navLinks").classList.toggle("open");
