@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Dr. Vasan's HC AI Lab</title>
-<meta name="description" content="Physician-led AI research lab spanning 21 clinical imaging and healthcare-workflow projects, from Dr. Haluthore Vasan.">
+<title>Dr. Vasan's Rx for HealthCare Facilities</title>
+<meta name="description" content="Dr. Vasan's Rx for HealthCare facilities — physician-led diagnostic and workflow AI enhancing care delivery and boosting your bottom line.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🩺</text></svg>">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
@@ -84,6 +84,14 @@ nav.links a:hover{color:var(--ink); background:var(--line-soft);}
 @media (max-width:900px){.hero-grid{grid-template-columns:1fr;}}
 .hero h1{font-size:clamp(38px, 5vw, 60px); line-height:1.04; text-wrap:balance;}
 .hero h1 em{font-style:italic; color:var(--accent-ink);}
+
+/* Prescription-style Rx: a smaller x sitting on the descending leg of the R.
+   Built in CSS rather than the Unicode glyph U+211E, whose rendering varies
+   widely by font and is missing entirely from several common stacks. */
+.rx{display:inline-block; position:relative; font-weight:700; padding-right:.30em;
+    color:var(--accent-ink);}
+.rx .rx-x{position:absolute; right:0; bottom:-.04em; font-size:.58em;
+          font-weight:700; line-height:1; transform:translateX(28%);}
 .hero .lede{font-size:18px; color:var(--ink-soft); margin-top:20px; max-width:520px; text-wrap:pretty;}
 .hero-ctas{display:flex; gap:12px; margin-top:32px; flex-wrap:wrap;}
 .btn{
@@ -306,14 +314,13 @@ footer{border-top:1px solid var(--line-soft); padding:48px 0 40px;}
 
 <header class="site-nav">
   <div class="wrap nav-row">
-    <div class="wordmark">HC AI Lab <span class="dr">— Dr. Vasan</span></div>
+    <div class="wordmark">Dr. Vasan's <span class="rx" aria-label="Rx" role="img"><span aria-hidden="true">R<span class="rx-x">x</span></span></span> <span class="dr">— for HealthCare facilities</span></div>
     <button class="nav-toggle" id="navToggle">MENU</button>
     <nav class="links" id="navLinks">
       <a href="#who-we-are">Who We Are</a>
       <a href="#inspiration">Our Inspiration</a>
       <a href="#leadership">Our Leadership</a>
       <a href="#projects">Our Projects</a>
-      <a href="#research">Our Research</a>
       <a href="#facilities">Facilities</a>
       <a href="#insurers">Insurers</a>
       <a href="#invest">Investors</a>
@@ -329,11 +336,11 @@ footer{border-top:1px solid var(--line-soft); padding:48px 0 40px;}
       <div class="hero-grid">
         <div>
           <p class="eyebrow">Physician-Led · AI Research Lab</p>
-          <h1>Clinical judgment, <em>encoded.</em></h1>
+          <h1>Dr. Vasan's <span class="rx" aria-label="Rx" role="img"><span aria-hidden="true">R<span class="rx-x">x</span></span></span> <strong>for HealthCare facilities</strong></h1>
           <p class="lede">
-            We build diagnostic and workflow AI across imaging, cardiology, and care
-            operations — designed and validated the way medicine is practiced: rigorously,
-            transparently, one condition at a time.
+            Diagnostic and workflow AI across imaging, cardiology, and care operations —
+            enhancing care delivery and boosting your bottom line, designed and validated
+            the way medicine is practiced: rigorously, transparently, one condition at a time.
           </p>
           <div class="hero-ctas">
             <a class="btn btn-primary" href="#projects">Explore Our Projects</a>
@@ -364,7 +371,7 @@ footer{border-top:1px solid var(--line-soft); padding:48px 0 40px;}
       <div class="who-grid">
         <div class="who-copy">
           <p>
-            Dr. Vasan's HC AI Lab is an independent research and development group
+            Dr. Vasan's Rx is an independent research and development group
             building applied artificial intelligence for healthcare — spanning
             diagnostic imaging, cardiac signal analysis, and the clinical workflow
             software that determines whether any of it actually reaches a patient.
@@ -463,32 +470,6 @@ footer{border-top:1px solid var(--line-soft); padding:48px 0 40px;}
     </section>
   </div>
 
-  <div class="wrap">
-    <section id="research" class="reveal">
-      <div class="section-head">
-        <p class="eyebrow">Our Research</p>
-        <h2>Method over momentum.</h2>
-        <p>We publish our reasoning, not just our results — including the architectures we tried and rejected.</p>
-      </div>
-      <div class="research-strip">
-        <div class="research-card">
-          <p class="k">Approach</p>
-          <h3>Task-specific architecture research</h3>
-          <p>Before any new condition, we research what predicate devices and open-source SOTA actually use — and pivot away from our own prior architecture when the evidence says to.</p>
-        </div>
-        <div class="research-card">
-          <p class="k">Practice</p>
-          <h3>Agent-checking-agent validation</h3>
-          <p>Our multi-agent pipelines include independent auditor agents that score every extracted rule or drafted claim against its cited source before it reaches a clinician.</p>
-        </div>
-        <div class="research-card">
-          <p class="k">Publishing</p>
-          <h3>Open weights &amp; code</h3>
-          <p>Validated model checkpoints and training code are released on GitHub and Hugging Face as each project reaches evaluation.</p>
-        </div>
-      </div>
-    </section>
-  </div>
 
   <div class="wrap">
     <section id="facilities" class="tight reveal">
@@ -530,7 +511,7 @@ footer{border-top:1px solid var(--line-soft); padding:48px 0 40px;}
           <p class="eyebrow" style="color:color-mix(in srgb, var(--paper) 70%, transparent);">Pre-Seed Round · Now Open</p>
           <h2 class="invest-h2">Invest in the physician who builds what medicine actually needs.</h2>
           <p class="invest-lede">
-            Dr. Vasan's HC AI Lab is raising a pre-seed round to take our validated
+            Dr. Vasan's Rx is raising a pre-seed round to take our validated
             models toward regulatory clearance and expand a 21-project pipeline built
             by a practicing clinician, not retrofitted onto one by an engineering team
             guessing at clinical need.
@@ -634,16 +615,15 @@ footer{border-top:1px solid var(--line-soft); padding:48px 0 40px;}
 <footer>
   <div class="wrap">
     <div class="footer-grid">
-      <div class="wordmark" style="font-size:16px;">HC AI Lab</div>
+      <div class="wordmark" style="font-size:16px;">Dr. Vasan's <span class="rx" aria-label="Rx" role="img"><span aria-hidden="true">R<span class="rx-x">x</span></span></span></div>
       <div class="footer-links">
         <a href="#who-we-are">About</a>
         <a href="#projects">Projects</a>
-        <a href="#research">Research</a>
         <a href="#careers">Careers</a>
         <a href="#contact">Contact</a>
       </div>
     </div>
-    <p class="footer-note">© Dr. Vasan's HC AI Lab. All clinical imaging projects carry FDA status: Pending, unless otherwise noted on the project detail page.</p>
+    <p class="footer-note">© Dr. Vasan's Rx. All clinical imaging projects carry FDA status: Pending, unless otherwise noted on the project detail page.</p>
   </div>
 </footer>
 
